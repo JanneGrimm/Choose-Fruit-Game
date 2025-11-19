@@ -1,14 +1,17 @@
 import pygame
 import random
 
-WINDOW_WIDTH = 650
+WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 1000
 
-BG_COLOR = (173, 216, 230)
+BG_SKY = (173, 216, 230)
 
 ITEM_SPEED = 0.5
 
-
+# need new background
+def load_background(screen: pygame.Surface):
+    bg = pygame.image.load("Images/Background/background_yard.png").convert()
+    return bg
 
 
 
@@ -56,9 +59,9 @@ def load_fruit_images() -> list[pygame.Surface]:
 
 
 
-def move_item(screen: pygame.Surface, image: pygame.Surface, y: float) -> float:
+def move_item_vertical(screen: pygame.Surface, image: pygame.Surface, y: float) -> float:
     y += ITEM_SPEED
-    screen.fill((BG_COLOR))
+    
     screen.blit(
         image,
         ((WINDOW_WIDTH / 2) - (image.get_width()/2), y)
@@ -70,3 +73,11 @@ def move_item(screen: pygame.Surface, image: pygame.Surface, y: float) -> float:
 def item_switcher(fruit_list: pygame.Surface) -> pygame.Surface:
     return random.choice(fruit_list)
     
+
+def move_item_horizontal(x: float, screen: pygame.Surface, image: pygame.Surface) -> float:
+    x += ITEM_SPEED
+    screen.blit(
+        image,
+        (x, ((WINDOW_WIDTH / 2) - (image.get_width()/2)))
+    )
+    return x
