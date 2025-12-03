@@ -10,7 +10,7 @@ ITEM_SPEED = 0.5
 
 # need new background
 def load_background(screen: pygame.Surface):
-    bg = pygame.image.load("Images/Background/background_yard.png").convert()
+    bg = pygame.image.load("Images/Background/background_yard.png").convert_alpha()
     return bg
 
 

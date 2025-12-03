@@ -1,5 +1,5 @@
 import pygame
-import sys
+from sys import exit
 
 from functions import WINDOW_WIDTH, WINDOW_HEIGHT, BG_SKY
 from functions import load_background, item_switcher, load_fruit_images
@@ -12,8 +12,9 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 clock = pygame.time.Clock()
 
 # Background
-screen.fill((BG_SKY))
-#bg_yard = load_background(screen)
+sky_surface = pygame.Surface((800,1000))
+sky_surface.fill('#87CEEB')
+
 
 
 fruit_list = load_fruit_images()
@@ -26,25 +27,17 @@ item_y = 600
 item_x = 600
 
 while running:
-    screen.fill((BG_SKY))
-    item_y = move_item_vertical(screen, curr_item, item_y)
-
-
-
     for e in pygame.event.get():
         if e.type == pygame.QUIT:
-            running = False
+            pygame.quit()
+            exit()
         if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
-            running = False
-            
-        # i want to make the exact fruit variable to move left
-        # need to stop it going down
-        if e.type == pygame.KEYDOWN and e.key == pygame.K_RIGHT:
-            item_x = move_item_horizontal(item_x, screen, curr_item)
+            pygame.quit()
+            exit()
 
 
 
-
+    screen.blit(sky_surface,(0,0))
     
     #screen.blit(bg_yard, (0,500))
 
